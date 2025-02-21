@@ -28,6 +28,7 @@ package main
 
 import (
 	"fmt"
+	
 	"github.com/ongniud/pool"
 )
 
@@ -88,8 +89,8 @@ The following is a simple performance comparison with the `sync.Pool` in the Go 
 
 | Test Scenario         | This Pool (ns/op) | sync.Pool (ns/op) |
 |------------------|-------------------|-------------------|
-| Single-threaded Get/Put  | 60                | 12                |
-| High-concurrency Get/Put  | 395               | 375                |
+| Single-threaded Get/Put  | 27                | 12                |
+| High-concurrency Get/Put  | 567               | 375                |
 
 ---
 

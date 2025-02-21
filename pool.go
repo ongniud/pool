@@ -68,14 +68,13 @@ func (p *Pool) Put(obj interface{}) {
 	if obj == nil {
 		return
 	}
-
 	shardID := p.shardID()
 	p.shards[shardID].push(obj)
 }
 
 // shardID returns the ID of the shard to use.
 func (p *Pool) shardID() uint64 {
-	return p.shardIDRand() & p.shardMask
+	return p.shardIDGoID() & p.shardMask
 }
 
 // shardIDRand returns a shard ID using a random-like approach (incrementing tick).
