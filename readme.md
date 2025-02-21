@@ -19,12 +19,6 @@ This pool is inspired by `sync.Pool` but completely independent of the Go runtim
 | **Performance**          | Requires manual optimization, may be slower than `sync.Pool`      | Highly optimized, excellent performance |
 | **Use Cases**            | Specific needs (e.g., capacity limits, special object management) | General-purpose, high-performance scenarios |
 
-## Installation
-
-```bash
-go get github.com/ongniud/pool
-```
-
 ## Usage Example
 
 ```go
