@@ -2,8 +2,6 @@
 
 This pool is inspired by `sync.Pool` but completely independent of the Go runtime. Through the sharding and pseudo-local cache strategy, this implementation performs excellently in high-concurrency scenarios and is suitable for scenarios where objects need to be frequently allocated and recycled.
 
----
-
 ## Features
 
 - **Sharding Design**: The object pool is divided into multiple shards to reduce lock contention.
@@ -11,15 +9,21 @@ This pool is inspired by `sync.Pool` but completely independent of the Go runtim
 - **Shard Size Limit**: Each shard has a fixed capacity to prevent unlimited memory growth.
 - **High Performance**: Achieve high-concurrency performance by optimizing the lock contention and shard selection strategy.
 
----
+##### Comparison with `sync.Pool`
+
+| Feature                  | `Pool`                                                       | `sync.Pool`                          |
+|--------------------------|-------------------------------------------------------------------|--------------------------------------|
+| **Capacity Limit**       | Supported (can limit per-shard size)                              | Not supported                        |
+| **Sharding Strategy**    | Customizable (number and strategy)                                | Internal implementation, not configurable |
+| **Object Lifecycle Control** | Customizable (e.g., periodic cleanup)                             | Depends on GC, not controllable      |
+| **Performance**          | Requires manual optimization, may be slower than `sync.Pool`      | Highly optimized, excellent performance |
+| **Use Cases**            | Specific needs (e.g., capacity limits, special object management) | General-purpose, high-performance scenarios |
 
 ## Installation
 
 ```bash
 go get github.com/ongniud/pool
 ```
-
----
 
 ## Usage Example
 
@@ -51,8 +55,6 @@ func main() {
 }
 ```
 
----
-
 ## Performance Optimization
 
 ### Shard Selection Strategy
@@ -68,8 +70,6 @@ func main() {
 
 - The maximum capacity of each shard is `shardCap` to prevent unlimited memory growth.
 
----
-
 ## Notes
 
 1. **Selection of the Number of Shards**:
@@ -81,8 +81,6 @@ func main() {
 3. **Concurrency Performance**:
     - In high-concurrency scenarios, the shard lock may become a performance bottleneck. It is recommended to adjust the number of shards and the shard size according to the actual load.
 
----
-
 ## Benchmark Tests
 
 The following is a simple performance comparison with the `sync.Pool` in the Go standard library:
@@ -92,13 +90,9 @@ The following is a simple performance comparison with the `sync.Pool` in the Go 
 | Single-threaded Get/Put  | 27                | 12                |
 | High-concurrency Get/Put  | 567               | 375                |
 
----
-
 ## Contribution
 
 Welcome to submit issues and pull requests! Please ensure that the code style is consistent and all tests pass.
-
----
 
 ## License
 
