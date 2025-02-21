@@ -1,4 +1,4 @@
-# Go Sync Pool Implementation
+# Pool
 
 This pool is inspired by `sync.Pool` but completely independent of the Go runtime. Through the sharding and pseudo-local cache strategy, this implementation performs excellently in high-concurrency scenarios and is suitable for scenarios where objects need to be frequently allocated and recycled.
 
